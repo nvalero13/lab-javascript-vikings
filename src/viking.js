@@ -68,11 +68,41 @@ class War {
     }
 
     showStatus() {
-        if(this.saxonArmy.length === 0) return "Vikings have won the war of the century!"
-        else if (this.vikingArmy.length === 0) return "Saxons have fought for their lives and survived another day..."
-        else return "Vikings and Saxons are still in the thick of battle."
+        if(this.saxonArmy.length === 0) return `${this.vikingArmy.length} Vikings have won the war of the century!`
+        else if (this.vikingArmy.length === 0) return `${this.saxonArmy.length} Saxons have fought for their lives and survived another day...`
+        else return `${this.vikingArmy.length} Vikings and ${this.saxonArmy.length} Saxons are still in the thick of battle.`
     }
 
 
 }
+
+
+
+const war = new War()
+
+let n = 0;
+const rand = Math.floor(Math.random() * 9)+1;
+
+while (n < rand) {
+    n++;
+    war.addViking(new Viking("Halbrand "+n, Math.floor(Math.random() * 9)+10, Math.floor(Math.random() * 9)+3));
+  
+}
+
+n = 0;
+
+while (n < rand) {
+    n++;
+    war.addSaxon(new Saxon(Math.floor(Math.random() * 9)+10, Math.floor(Math.random() * 9)+3))
+  
+}
+
+console.log(war.vikingArmy, war.saxonArmy)
+
+do {
+    console.log(war.vikingAttack())
+    console.log(war.saxonAttack())
+    console.log(war.showStatus())
+    console.log()
+} while (war.saxonArmy.length > 0 && war.vikingArmy.length > 0)
 
